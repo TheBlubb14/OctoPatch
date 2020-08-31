@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<OutputType>Exe</OutputType>
+		<TargetFramework>netcoreapp3.1</TargetFramework>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<FrameworkReference Include="Microsoft.AspNetCore.App" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <PackageReference Include="Serilog.AspNetCore" Version="3.4.0" />
+	  <PackageReference Include="Serilog.Sinks.Console" Version="3.1.1" />
+	  <PackageReference Include="Serilog.Sinks.RollingFile" Version="3.3.0" />
+	  <PackageReference Include="Serilog.Sinks.Seq" Version="4.0.0" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\..\Core\OctoPatch.Server\OctoPatch.Server.csproj" />
+	</ItemGroup>
+
+</Project>
