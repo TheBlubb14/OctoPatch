@@ -29,7 +29,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OctoPatch.Server", "src\Cor
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OctoPatch.Plugin.Keyboard", "src\Plugins\OctoPatch.Plugin.Keyboard\OctoPatch.Plugin.Keyboard.csproj", "{DD956A0D-1556-4CCA-B1F3-4010D0F0F8F3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Octopatch.Plugin.iobroker.simpleapi", "src\Plugins\Octopatch.Plugin.iobroker.simpleapi\Octopatch.Plugin.iobroker.simpleapi.csproj", "{B1980DEB-C598-4D3A-BFF1-501383893C28}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Octopatch.Plugin.IoBroker.SimpleApi", "src\Plugins\Octopatch.Plugin.iobroker.simpleapi\Octopatch.Plugin.IoBroker.SimpleApi.csproj", "{B1980DEB-C598-4D3A-BFF1-501383893C28}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
