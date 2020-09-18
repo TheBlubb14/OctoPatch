@@ -13,6 +13,7 @@
   <ItemGroup>
     <ProjectReference Include="..\..\Core\OctoPatch.Core\OctoPatch.Core.csproj" />
     <ProjectReference Include="..\..\Core\OctoPatch.Server\OctoPatch.Server.csproj" />
+    <ProjectReference Include="..\..\Plugins\Octopatch.Plugin.iobroker.simpleapi\Octopatch.Plugin.IoBroker.SimpleApi.csproj" />
     <ProjectReference Include="..\..\Plugins\OctoPatch.Plugin.Keyboard\OctoPatch.Plugin.Keyboard.csproj" />
     <ProjectReference Include="..\..\Plugins\OctoPatch.Plugin.Midi\OctoPatch.Plugin.Midi.csproj" />
   </ItemGroup>

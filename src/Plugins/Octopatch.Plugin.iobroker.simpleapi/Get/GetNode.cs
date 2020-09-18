@@ -1,10 +1,13 @@
-﻿using OctoPatch;
+﻿using Newtonsoft.Json;
+using OctoPatch;
 using OctoPatch.ContentTypes;
 using OctoPatch.Descriptions;
 using System;
+using System.Drawing;
 using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
+using static System.Net.WebRequestMethods;
 
 namespace Octopatch.Plugin.IoBroker.SimpleApi.Get
 {
@@ -24,7 +27,7 @@ namespace Octopatch.Plugin.IoBroker.SimpleApi.Get
             "GetOutput", "State Value", "Gets the current value of the specified state",
             ComplexContentType.Create<string>(Guid.Parse(SimpleApiPlugin.PluginId)));
 
-        public const string RequestPath = "getPlainValue";
+        public const string RequestPath = "get";
 
         protected override GetNodeConfiguration DefaultConfiguration => new GetNodeConfiguration();
 
@@ -42,7 +45,12 @@ namespace Octopatch.Plugin.IoBroker.SimpleApi.Get
 
         protected override Task OnInitialize(GetNodeConfiguration configuration, CancellationToken cancellationToken)
         {
-            this.configuration = configuration;
+            //this.configuration = configuration;
+            this.configuration = new GetNodeConfiguration() { StateId = "zigbee.0.00158d00036bfd0e.humidity" };
+            UpdateEnvironment(new IoBrokerEnvironment()
+            {
+                SimpleApiUri = new Uri("http://raspberrypi:8087")
+            });
             return base.OnInitialize(configuration, cancellationToken);
         }
 
@@ -55,7 +63,7 @@ namespace Octopatch.Plugin.IoBroker.SimpleApi.Get
                 return;
 
             var value = await http.GetStringAsync(new Uri(Environment.SimpleApiUri, $"{RequestPath}/{configuration.StateId}"));
-            outputConnector.Send(value);
+            outputConnector.Send(JsonConvert.DeserializeObject<ObjectState>(value));
         }
 
         protected override void OnDispose()
