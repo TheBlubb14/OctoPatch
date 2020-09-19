@@ -19,6 +19,7 @@ namespace Octopatch.Plugin.IoBroker.SimpleApi
         public SimpleApiPlugin()
         {
             RegisterNode<GetNode>(GetNode.NodeDescription);
+            RegisterNode<GetNode>(IoBrokerEnvironmentNode.NodeDescription);
         }
 
         protected override IAdapter OnCreateAdapter(Type type)

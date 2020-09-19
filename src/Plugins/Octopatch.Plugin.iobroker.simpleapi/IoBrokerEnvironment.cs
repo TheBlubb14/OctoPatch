@@ -1,7 +1,7 @@
 ﻿using OctoPatch;
 using System;
 
-namespace Octopatch.Plugin.IoBroker.SimpleApi.Get
+namespace Octopatch.Plugin.IoBroker.SimpleApi
 {
     public sealed class IoBrokerEnvironment : IEnvironment
     {

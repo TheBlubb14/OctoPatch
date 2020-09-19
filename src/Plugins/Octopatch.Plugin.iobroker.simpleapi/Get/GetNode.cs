@@ -3,11 +3,9 @@ using OctoPatch;
 using OctoPatch.ContentTypes;
 using OctoPatch.Descriptions;
 using System;
-using System.Drawing;
 using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
-using static System.Net.WebRequestMethods;
 
 namespace Octopatch.Plugin.IoBroker.SimpleApi.Get
 {
@@ -15,7 +13,7 @@ namespace Octopatch.Plugin.IoBroker.SimpleApi.Get
     {
         public static NodeDescription NodeDescription => CommonNodeDescription.Create<GetNode>(
             Guid.Parse(SimpleApiPlugin.PluginId),
-            "Get",
+            "simple-api Get",
             "Gets the current value of the specified state")
             .AddInputDescription(GetInputDescription)
             .AddOutputDescription(GetOutputDescription);
@@ -45,12 +43,12 @@ namespace Octopatch.Plugin.IoBroker.SimpleApi.Get
 
         protected override Task OnInitialize(GetNodeConfiguration configuration, CancellationToken cancellationToken)
         {
-            //this.configuration = configuration;
-            this.configuration = new GetNodeConfiguration() { StateId = "zigbee.0.00158d00036bfd0e.humidity" };
-            UpdateEnvironment(new IoBrokerEnvironment()
-            {
-                SimpleApiUri = new Uri("http://raspberrypi:8087")
-            });
+            configuration.StateId = "zigbee.0.00158d00036bfd0e.humidity";
+            //this.configuration = new GetNodeConfiguration() { StateId = "zigbee.0.00158d00036bfd0e.humidity" };
+            //UpdateEnvironment(new IoBrokerEnvironment()
+            //{
+            //    SimpleApiUri = new Uri("http://raspberrypi:8087")
+            //});
             return base.OnInitialize(configuration, cancellationToken);
         }
 
