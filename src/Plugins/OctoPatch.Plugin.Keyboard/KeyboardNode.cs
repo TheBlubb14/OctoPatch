@@ -11,7 +11,7 @@ using OctoPatch.Descriptions;
 
 namespace OctoPatch.Plugin.Keyboard
 {
-    public sealed class KeyboardNode : Node<EmptyConfiguration, EmptyEnvironment>
+    public sealed partial class KeyboardNode : Node<EmptyConfiguration, EmptyEnvironment>
     {
         #region Type description
 
@@ -23,7 +23,6 @@ namespace OctoPatch.Plugin.Keyboard
                 "Keyboard",
                 "Blabla")
             .AddOutputDescription(KeyOutputDescription)
-            .AddOutputDescription(KeyCharOutputDescription)
             .AddOutputDescription(KeyUnicodeOutputDescription);
 
         /// <summary>
@@ -34,13 +33,6 @@ namespace OctoPatch.Plugin.Keyboard
             ComplexContentType.Create<int>(Guid.Parse(KeyboardPlugin.PluginId)));
 
         /// <summary>
-        /// Description of the keyboard char output connector
-        /// </summary>
-        public static ConnectorDescription KeyCharOutputDescription => new ConnectorDescription(
-            "KeyCharOutput", "key char Output", "Key char output signal",
-            ComplexContentType.Create<char>(Guid.Parse(KeyboardPlugin.PluginId)));
-
-        /// <summary>
         /// Description of the keyboard unicode output connector
         /// </summary>
         public static ConnectorDescription KeyUnicodeOutputDescription => new ConnectorDescription(
@@ -49,24 +41,11 @@ namespace OctoPatch.Plugin.Keyboard
 
         #endregion
 
-        public struct StringMessage
-        {
-            public string Content { get; set; }
-
-            public StringMessage(string content)
-            {
-                Content = content;
-            }
-
-            public override string ToString() => Content;
-        }
-
         private readonly IOutputConnectorHandler _outputConnector;
-        private readonly IOutputConnectorHandler _charOutputConnector;
         private readonly IOutputConnectorHandler _unicodeOutputConnector;
 
-        private readonly GlobalKeyboardHook _hook;
-        private readonly KeyboardHelper _keyboard;
+        internal readonly GlobalKeyboardHook _hook;
+        internal readonly KeyboardHelper _keyboard;
 
         protected override EmptyConfiguration DefaultConfiguration => new EmptyConfiguration();
 
@@ -78,7 +57,6 @@ namespace OctoPatch.Plugin.Keyboard
             _keyboard = new KeyboardHelper(CultureInfo.CurrentCulture);
 
             _outputConnector = RegisterOutputConnector(KeyOutputDescription);
-            _charOutputConnector = RegisterOutputConnector(KeyCharOutputDescription);
             _unicodeOutputConnector = RegisterOutputConnector(KeyUnicodeOutputDescription);
         }
 
@@ -87,7 +65,6 @@ namespace OctoPatch.Plugin.Keyboard
             if (State == NodeState.Running && e.KeyboardState == GlobalKeyboardHook.KeyboardState.KeyDown)
             {
                 _outputConnector.Send(e.KeyboardData.VirtualCode);
-                _charOutputConnector.Send(_keyboard.GetCharFromVirtualKeyCode((uint)e.KeyboardData.VirtualCode));
 
                 // Only send if we have a printable string
                 var unicode = _keyboard.GetUnicodeFromVirtualKeyCode((uint)e.KeyboardData.VirtualCode);

@@ -22,4 +22,17 @@
     <ProjectReference Include="..\..\Plugins\OctoPatch.Plugin.Rest\OctoPatch.Plugin.Rest.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Compile Update="Views\KeyboardStringView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Update="Views\KeyboardStringView.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+
 </Project>

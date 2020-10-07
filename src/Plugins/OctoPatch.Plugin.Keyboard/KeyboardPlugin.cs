@@ -7,7 +7,7 @@ namespace OctoPatch.Plugin.Keyboard
         /// <summary>
         ///  Plugin id
         /// </summary>
-        internal const string PluginId = "{A6FE76D7-5F0E-4763-A3A5-FCAF43C71464}";
+        public const string PluginId = "{A6FE76D7-5F0E-4763-A3A5-FCAF43C71464}";
 
         public override Guid Id => Guid.Parse(PluginId);
         public override string Name => "Keyboard";
@@ -17,6 +17,8 @@ namespace OctoPatch.Plugin.Keyboard
         public KeyboardPlugin()
         {
             RegisterNode<KeyboardNode>(KeyboardNode.NodeDescription);
+            RegisterNode<KeyboardCharNode>(KeyboardCharNode.NodeDescription);
+            RegisterNode<KeyboardStringNode>(KeyboardStringNode.NodeDescription);
         }
 
         protected override IAdapter OnCreateAdapter(Type type)

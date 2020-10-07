@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using OctoPatch.Descriptions;
 using OctoPatch.DesktopClient.Models;
+using OctoPatch.Plugin.Keyboard;
 using OctoPatch.Plugin.Rest;
 using OctoPatch.Server;
 using OctoPatch.Setup;
@@ -184,6 +185,14 @@ namespace OctoPatch.DesktopClient.ViewModels
                 else if(item?.Setup.Key == $"{RestPlugin.PluginId[1..^1].ToLower()}:{nameof(RestGetNode)}")
                 {
                     var model = new RestGetModel();
+                    model.Setup(item.Environment);
+                    model.SetConfiguration(item.Setup.Configuration);
+                    NodeConfiguration = model;
+                    _saveNodeConfiguration.Enabled = true;
+                }
+                else if (item?.Setup.Key == $"{KeyboardPlugin.PluginId[1..^1].ToLower()}:{nameof(KeyboardStringNode)}")
+                {
+                    var model = new KeyboardStringModel();
                     model.Setup(item.Environment);
                     model.SetConfiguration(item.Setup.Configuration);
                     NodeConfiguration = model;
