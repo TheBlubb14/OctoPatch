@@ -28,13 +28,13 @@ namespace OctoPatch.DesktopClient.Models
         {
             return new KeyboardStringConfiguration()
             {
-                IgnoreNotPrintable = IgnoreNotPrintable
+                IgnoreNotPrintable = this.IgnoreNotPrintable
             };
         }
 
         protected override void OnSetConfiguration(KeyboardStringConfiguration configuration)
         {
-            IgnoreNotPrintable = IgnoreNotPrintable;
+            IgnoreNotPrintable = configuration.IgnoreNotPrintable;
         }
     }
 }

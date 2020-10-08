@@ -5,6 +5,6 @@
         /// <summary>
         /// Ignores not printable character like whitespace and newline
         /// </summary>
-        public bool IgnoreNotPrintable { get; set; } = true;
+        public bool IgnoreNotPrintable { get; set; }
     }
 }

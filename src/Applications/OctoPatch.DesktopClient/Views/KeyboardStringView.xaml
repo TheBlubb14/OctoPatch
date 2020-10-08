@@ -11,7 +11,9 @@
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
-        <CheckBox Content="Ignore not printable character like whitespace and newline" IsChecked="{Binding IgnoreNotPrintable}"/>
+        <CheckBox  IsChecked="{Binding IgnoreNotPrintable}">
+            <TextBlock Text="Ignore not printable character like whitespace and newline" TextWrapping="Wrap"/>
+        </CheckBox>
 
     </Grid>
 </UserControl>
